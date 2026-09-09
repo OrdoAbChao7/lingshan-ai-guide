@@ -9,6 +9,33 @@ import { visitorAPI } from '../../services/api';
 
 const { Title, Paragraph, Text } = Typography;
 
+// WGS84 坐标（与浏览器 GPS 同一坐标系），与 HomePage / 后端保持一致
+const SPOT_COORDS: Record<string, { lat: number; lng: number }> = {
+  '灵山大佛': { lat: 31.43205, lng: 120.09151 },
+  '九龙灌浴': { lat: 31.42662, lng: 120.09523 },
+  '灵山梵宫': { lat: 31.43065, lng: 120.09756 },
+  '五印坛城': { lat: 31.42664, lng: 120.09813 },
+  '祥符禅寺': { lat: 31.42986, lng: 120.09309 },
+  '拈花湾': { lat: 31.42112, lng: 120.07161 },
+  '灵山大照壁': { lat: 31.42250, lng: 120.09740 },
+  '菩提大道': { lat: 31.42400, lng: 120.09670 },
+  '百子戏弥勒': { lat: 31.42540, lng: 120.09760 },
+  '曼飞龙塔': { lat: 31.42800, lng: 120.09900 },
+  '无尽意斋': { lat: 31.43050, lng: 120.09180 },
+  '佛足坛': { lat: 31.42330, lng: 120.09700 },
+  '五智门': { lat: 31.42460, lng: 120.09630 },
+  '降魔浮雕': { lat: 31.42500, lng: 120.09610 },
+  '阿育王柱': { lat: 31.42530, lng: 120.09590 },
+  '梵天花海': { lat: 31.41960, lng: 120.07620 },
+  '香月花街': { lat: 31.41950, lng: 120.07080 },
+  '五灯湖': { lat: 31.42000, lng: 120.07280 },
+  '鹿鸣谷': { lat: 31.42430, lng: 120.07630 },
+  '佛教文化博览馆': { lat: 31.43205, lng: 120.09151 },
+  '拈花广场': { lat: 31.41780, lng: 120.06950 },
+  '拈花堂': { lat: 31.42120, lng: 120.07220 },
+  '五明桥': { lat: 31.42240, lng: 120.09740 },
+};
+
 const interests = [
   { key: '历史', icon: <HistoryOutlined />, label: '历史文化', desc: '千年佛教传承' },
   { key: '文化', icon: <StarOutlined />, label: '佛教文化', desc: '深度文化体验' },
@@ -148,6 +175,17 @@ export default function RecommendPage() {
                     >
                       💬 了解更多
                     </Tag>
+                    {SPOT_COORDS[item.name] && (
+                      <a
+                        href={`https://api.map.baidu.com/marker?location=${SPOT_COORDS[item.name].lat},${SPOT_COORDS[item.name].lng}&title=${encodeURIComponent(item.name)}&content=${encodeURIComponent(item.reason)}&output=html`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none' }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        🚗 到这里
+                      </a>
+                    )}
                   </div>
                 ),
                 icon: <div style={{

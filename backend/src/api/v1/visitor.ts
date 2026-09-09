@@ -82,28 +82,28 @@ function getImageUrls(question: string, answer: string): SpotImage[] {
 // ============ Scenic Spots ============
 
 const ALL_SPOTS = [
-  { id: 'LS-011', name: '灵山大佛', area: '灵山胜境', category: '佛教建筑', summary: '世界最高露天青铜释迦牟尼立像，通高88米', highlight: '登顶抱佛脚，俯瞰太湖全景', lat: 31.42, lng: 120.10 },
-  { id: 'LS-006', name: '九龙灌浴', area: '灵山胜境', category: '动态景观', summary: '大型音乐动态群雕，再现佛陀诞生祥瑞场景', highlight: '花开见佛，九龙吐水，可接取圣水', lat: 31.41, lng: 120.10 },
-  { id: 'LS-013', name: '灵山梵宫', area: '灵山胜境', category: '佛教建筑', summary: '被誉为"东方卢浮宫"的佛教艺术殿堂', highlight: '穹顶天象图、《华藏世界》琉璃壁画、《吉祥颂》演出', lat: 31.42, lng: 120.10 },
-  { id: 'LS-014', name: '五印坛城', area: '灵山胜境', category: '藏传佛教', summary: '藏传佛教风格建筑，有"小布达拉宫"之称', highlight: '转经筒祈福，登顶俯瞰香水海全景', lat: 31.42, lng: 120.11 },
-  { id: 'LS-010', name: '祥符禅寺', area: '灵山胜境', category: '千年古刹', summary: '唐代千年古刹，灵山佛教文化发源地', highlight: '千年银杏、祥符禅钟、六角古井', lat: 31.42, lng: 120.10 },
-  { id: 'LS-001', name: '灵山大照壁', area: '灵山胜境', category: '景观门户', summary: '华夏第一壁，赵朴初题字', highlight: '鎏金大字，湖光壁影同框', lat: 31.41, lng: 120.09 },
-  { id: 'LS-005', name: '菩提大道', area: '灵山胜境', category: '景观步道', summary: '250米菩提树拱廊，印度正宗树种', highlight: '春季菩提花开，感受禅意漫步', lat: 31.41, lng: 120.10 },
-  { id: 'LS-009', name: '百子戏弥勒', area: '灵山胜境', category: '祈福景观', summary: '青铜群雕，弥勒百子嬉戏', highlight: '摸弥勒肚皮享福气，亲子互动拍照', lat: 31.42, lng: 120.10 },
-  { id: 'LS-015', name: '曼飞龙塔', area: '灵山胜境', category: '南传佛教', summary: '复刻云南西双版纳白塔', highlight: '佛教三大语系建筑齐聚，异域风情拍照', lat: 31.42, lng: 120.11 },
-  { id: 'LS-016', name: '无尽意斋', area: '灵山胜境', category: '名人纪念馆', summary: '赵朴初先生纪念馆', highlight: '四合院建筑，禅茶品鉴，书法欣赏', lat: 31.42, lng: 120.10 },
-  { id: 'LS-002', name: '五明桥', area: '灵山胜境', category: '景观步道', summary: '五座汉白玉石拱桥，象征佛教五种智慧', highlight: '过桥开启智慧，桥水倒影绝美', lat: 31.41, lng: 120.09 },
-  { id: 'LS-003', name: '佛足坛', area: '灵山胜境', category: '祈福景观', summary: '青铜巨型佛足印，复刻佛祖真身脚印', highlight: '瞻仰佛足，触摸吉祥图案祈福', lat: 31.41, lng: 120.10 },
-  { id: 'LS-004', name: '五智门', area: '灵山胜境', category: '景观建筑', summary: '汉白玉牌坊，五门象征五方五佛', highlight: '穿过此门踏入禅意圣地', lat: 31.41, lng: 120.10 },
-  { id: 'LS-007', name: '降魔浮雕', area: '灵山胜境', category: '佛教艺术', summary: '巨型石雕，再现佛陀降魔成道', highlight: '高浮雕与浅浮雕结合的佛教艺术珍品', lat: 31.41, lng: 120.10 },
-  { id: 'LS-008', name: '阿育王柱', area: '灵山胜境', category: '佛教建筑', summary: '整块花岗岩雕刻，重180吨', highlight: '佛教从印度传入中国的重要象征', lat: 31.41, lng: 120.10 },
-  { id: 'LS-012', name: '佛教文化博览馆', area: '灵山胜境', category: '博物馆', summary: '大佛座基内三层1万㎡博览馆', highlight: '万佛殿9999尊小佛像，免费讲解', lat: 31.42, lng: 120.10 },
-  { id: 'NH-001', name: '拈花广场', area: '拈花湾', category: '小镇门户', summary: '拈花湾入口核心区域', highlight: '拈花微笑雕塑，禅意开园仪式', lat: 31.40, lng: 120.08 },
-  { id: 'NH-002', name: '梵天花海', area: '拈花湾', category: '自然景观', summary: '占地30000㎡四季花海', highlight: '四季花开，木质步道漫步，拍照圣地', lat: 31.40, lng: 120.08 },
-  { id: 'NH-003', name: '香月花街', area: '拈花湾', category: '禅意商业', summary: '800米禅意商业街', highlight: '非遗手作体验，禅意文创，夜间灯笼美景', lat: 31.40, lng: 120.08 },
-  { id: 'NH-005', name: '五灯湖', area: '拈花湾', category: '水景景观', summary: '小镇最大水景观', highlight: '夜间《禅行》灯光秀，湖心亭观景', lat: 31.40, lng: 120.08 },
-  { id: 'NH-004', name: '拈花堂', area: '拈花湾', category: '禅修体验', summary: '禅坐抄经体验空间', highlight: '静心抄经，禅茶一味', lat: 31.40, lng: 120.08 },
-  { id: 'NH-006', name: '鹿鸣谷', area: '拈花湾', category: '自然景观', summary: '山林幽静区', highlight: '远离喧嚣，听鹿鸣山涧', lat: 31.40, lng: 120.09 },
+  { id: 'LS-011', name: '灵山大佛', area: '灵山胜境', category: '佛教建筑', summary: '世界最高露天青铜释迦牟尼立像，通高88米', highlight: '登顶抱佛脚，俯瞰太湖全景', lat: 31.43205, lng: 120.09151 },
+  { id: 'LS-006', name: '九龙灌浴', area: '灵山胜境', category: '动态景观', summary: '大型音乐动态群雕，再现佛陀诞生祥瑞场景', highlight: '花开见佛，九龙吐水，可接取圣水', lat: 31.42662, lng: 120.09523 },
+  { id: 'LS-013', name: '灵山梵宫', area: '灵山胜境', category: '佛教建筑', summary: '被誉为"东方卢浮宫"的佛教艺术殿堂', highlight: '穹顶天象图、《华藏世界》琉璃壁画、《吉祥颂》演出', lat: 31.43065, lng: 120.09756 },
+  { id: 'LS-014', name: '五印坛城', area: '灵山胜境', category: '藏传佛教', summary: '藏传佛教风格建筑，有"小布达拉宫"之称', highlight: '转经筒祈福，登顶俯瞰香水海全景', lat: 31.42664, lng: 120.09813 },
+  { id: 'LS-010', name: '祥符禅寺', area: '灵山胜境', category: '千年古刹', summary: '唐代千年古刹，灵山佛教文化发源地', highlight: '千年银杏、祥符禅钟、六角古井', lat: 31.42986, lng: 120.09309 },
+  { id: 'LS-001', name: '灵山大照壁', area: '灵山胜境', category: '景观门户', summary: '华夏第一壁，赵朴初题字', highlight: '鎏金大字，湖光壁影同框', lat: 31.42250, lng: 120.09740 },
+  { id: 'LS-005', name: '菩提大道', area: '灵山胜境', category: '景观步道', summary: '250米菩提树拱廊，印度正宗树种', highlight: '春季菩提花开，感受禅意漫步', lat: 31.42400, lng: 120.09670 },
+  { id: 'LS-009', name: '百子戏弥勒', area: '灵山胜境', category: '祈福景观', summary: '青铜群雕，弥勒百子嬉戏', highlight: '摸弥勒肚皮享福气，亲子互动拍照', lat: 31.42540, lng: 120.09760 },
+  { id: 'LS-015', name: '曼飞龙塔', area: '灵山胜境', category: '南传佛教', summary: '复刻云南西双版纳白塔', highlight: '佛教三大语系建筑齐聚，异域风情拍照', lat: 31.42800, lng: 120.09900 },
+  { id: 'LS-016', name: '无尽意斋', area: '灵山胜境', category: '名人纪念馆', summary: '赵朴初先生纪念馆', highlight: '四合院建筑，禅茶品鉴，书法欣赏', lat: 31.43050, lng: 120.09180 },
+  { id: 'LS-002', name: '五明桥', area: '灵山胜境', category: '景观步道', summary: '五座汉白玉石拱桥，象征佛教五种智慧', highlight: '过桥开启智慧，桥水倒影绝美', lat: 31.42240, lng: 120.09740 },
+  { id: 'LS-003', name: '佛足坛', area: '灵山胜境', category: '祈福景观', summary: '青铜巨型佛足印，复刻佛祖真身脚印', highlight: '瞻仰佛足，触摸吉祥图案祈福', lat: 31.42330, lng: 120.09700 },
+  { id: 'LS-004', name: '五智门', area: '灵山胜境', category: '景观建筑', summary: '汉白玉牌坊，五门象征五方五佛', highlight: '穿过此门踏入禅意圣地', lat: 31.42460, lng: 120.09630 },
+  { id: 'LS-007', name: '降魔浮雕', area: '灵山胜境', category: '佛教艺术', summary: '巨型石雕，再现佛陀降魔成道', highlight: '高浮雕与浅浮雕结合的佛教艺术珍品', lat: 31.42500, lng: 120.09610 },
+  { id: 'LS-008', name: '阿育王柱', area: '灵山胜境', category: '佛教建筑', summary: '整块花岗岩雕刻，重180吨', highlight: '佛教从印度传入中国的重要象征', lat: 31.42530, lng: 120.09590 },
+  { id: 'LS-012', name: '佛教文化博览馆', area: '灵山胜境', category: '博物馆', summary: '大佛座基内三层1万㎡博览馆', highlight: '万佛殿9999尊小佛像，免费讲解', lat: 31.43205, lng: 120.09151 },
+  { id: 'NH-001', name: '拈花广场', area: '拈花湾', category: '小镇门户', summary: '拈花湾入口核心区域', highlight: '拈花微笑雕塑，禅意开园仪式', lat: 31.41780, lng: 120.06950 },
+  { id: 'NH-002', name: '梵天花海', area: '拈花湾', category: '自然景观', summary: '占地30000㎡四季花海', highlight: '四季花开，木质步道漫步，拍照圣地', lat: 31.41960, lng: 120.07620 },
+  { id: 'NH-003', name: '香月花街', area: '拈花湾', category: '禅意商业', summary: '800米禅意商业街', highlight: '非遗手作体验，禅意文创，夜间灯笼美景', lat: 31.41950, lng: 120.07080 },
+  { id: 'NH-005', name: '五灯湖', area: '拈花湾', category: '水景景观', summary: '小镇最大水景观', highlight: '夜间《禅行》灯光秀，湖心亭观景', lat: 31.42000, lng: 120.07280 },
+  { id: 'NH-004', name: '拈花堂', area: '拈花湾', category: '禅修体验', summary: '禅坐抄经体验空间', highlight: '静心抄经，禅茶一味', lat: 31.42120, lng: 120.07220 },
+  { id: 'NH-006', name: '鹿鸣谷', area: '拈花湾', category: '自然景观', summary: '山林幽静区', highlight: '远离喧嚣，听鹿鸣山涧', lat: 31.42430, lng: 120.07630 },
 ];
 
 visitorRouter.get('/spots', (_req: Request, res: Response) => {
@@ -596,7 +596,7 @@ visitorRouter.get('/nearby-facilities', async (req: Request, res: Response) => {
       const url = `https://api.map.baidu.com/place/v2/search?query=${encodeURIComponent(keyword)}&location=${CENTER_LAT},${CENTER_LNG}&radius=3000&output=json&ak=${BAIDU_MAP_AK}`;
       console.log(`[nearby-facilities] 调用百度地图API: ${url}`);
       const response = await fetch(url);
-      const data = await response.json();
+      const data: any = await response.json();
       console.log(`[nearby-facilities] 百度地图API原始响应:`, JSON.stringify(data, null, 2));
 
       if (data.status === 0 && data.results) {

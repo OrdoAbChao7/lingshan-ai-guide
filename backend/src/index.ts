@@ -17,7 +17,7 @@ import { getIndexStats } from './services/structured-knowledge';
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
-const PORT = parseInt(process.env.PORT || '8000');
+const PORT = parseInt(process.env.PORT || '8010');
 
 // Middleware
 app.use(helmet({
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.resolve(__dirname, '../../data/uploads')));
 
 // Serve frontend
-const frontendDist = path.resolve(__dirname, '../../frontend-dist');
+const frontendDist = path.resolve(__dirname, '../../frontend/dist');
 app.use(express.static(frontendDist));
 
 // API routes

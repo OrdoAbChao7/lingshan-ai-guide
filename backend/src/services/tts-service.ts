@@ -1,6 +1,4 @@
-/**
- * TTS Service — calls Python micro HTTP server (edge_tts on port 8001).
- */
+const TTS_SERVER_URL = process.env.TTS_SERVER_URL || 'http://127.0.0.1:8001';
 interface TTSResult {
   audioBase64: string; duration: number;
   visemes: Array<{time_ms:number;viseme_id:number;viseme_name:string;shape:{w:number;h:number}}>;
@@ -18,8 +16,8 @@ export async function textToSpeech(text: string, options?: { voice?: string; rat
   const payload = { text: cleanText, voice: options?.voice || 'zh-CN-XiaoxiaoNeural', rate: options?.rate || '+0%', pitch: options?.pitch || '+0Hz' };
 
   try {
-    console.log(`[TTS] calling Python TTS server at http://127.0.0.1:8001/tts, payload length=${JSON.stringify(payload).length}`);
-    const res = await fetch('http://127.0.0.1:8001/tts', {
+    console.log(`[TTS] calling Python TTS server at ${TTS_SERVER_URL}/tts, payload length=${JSON.stringify(payload).length}`);
+    const res = await fetch(`${TTS_SERVER_URL}/tts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

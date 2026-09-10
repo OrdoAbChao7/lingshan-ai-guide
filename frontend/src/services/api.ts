@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1',
   timeout: 90000,
   headers: { 'Content-Type': 'application/json' },
 });
+
+const basePath = import.meta.env.VITE_BASE_PATH || '/';
 
 // Request interceptor — inject JWT for admin routes
 api.interceptors.request.use((config) => {
@@ -22,8 +24,9 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && error.config?.url?.startsWith('/admin')) {
       localStorage.removeItem('admin_token');
       localStorage.removeItem('admin_user');
-      if (window.location.pathname.startsWith('/admin') && !window.location.pathname.includes('/login')) {
-        window.location.href = '/admin/login';
+      const adminPath = `${basePath === '/' ? '' : basePath.replace(/\/$/, '')}/admin`;
+      if (window.location.pathname.startsWith(adminPath) && !window.location.pathname.includes('/login')) {
+        window.location.href = `${adminPath}/login`;
       }
     }
     console.error('API Error:', error.response?.data || error.message);
@@ -85,7 +88,7 @@ export const adminAPI = {
   exportConversations: async (params: any) => {
     const token = localStorage.getItem('admin_token');
     const queryStr = new URLSearchParams(params).toString();
-    const res = await fetch(`/api/v1/admin/conversations/export?${queryStr}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL || '/api/v1'}/admin/conversations/export?${queryStr}`, {
       headers: { 'Authorization': `Bearer ${token}` },
     });
     const blob = await res.blob();

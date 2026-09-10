@@ -6,6 +6,7 @@ import {
   HeartOutlined, BuildOutlined, StarOutlined, ClockCircleOutlined,
 } from '@ant-design/icons';
 import { visitorAPI } from '../../services/api';
+import { openBaiduNavigation } from '../../utils/navigation';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -177,11 +178,12 @@ export default function RecommendPage() {
                     </Tag>
                     {SPOT_COORDS[item.name] && (
                       <a
-                        href={`https://api.map.baidu.com/marker?location=${SPOT_COORDS[item.name].lat},${SPOT_COORDS[item.name].lng}&title=${encodeURIComponent(item.name)}&content=${encodeURIComponent(item.reason)}&output=html`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none' }}
-                        onClick={(e) => e.stopPropagation()}
+                        style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none', cursor: 'pointer' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const coords = SPOT_COORDS[item.name];
+                          openBaiduNavigation(coords, item.name);
+                        }}
                       >
                         🚗 到这里
                       </a>

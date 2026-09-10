@@ -34,7 +34,7 @@ function App() {
         },
       }}
     >
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.VITE_BASE_PATH || '/'}>
         <Routes>
           {/* Visitor */}
           <Route path="/" element={<HomePage />} />

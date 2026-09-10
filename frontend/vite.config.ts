@@ -4,7 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: process.env.VITE_BASE_PATH || '/',
   resolve: {
     alias: {
       // Fix: Vite 8 Rolldown can't resolve @pixi/* sub-packages from pixi.js v7

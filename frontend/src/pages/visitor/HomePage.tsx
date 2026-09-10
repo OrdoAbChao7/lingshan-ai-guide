@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Typography, Card, Row, Col, Tag, Button } from 'antd';
 import {
   MessageOutlined, CompassOutlined, SoundOutlined,
@@ -7,6 +7,7 @@ import {
   ThunderboltOutlined, StarFilled, SettingOutlined,
   AimOutlined, LoadingOutlined,
 } from '@ant-design/icons';
+import { openBaiduNavigation, type LatLng } from '../../utils/navigation';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -37,6 +38,7 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState('spots');
   const [facilities, setFacilities] = useState<any[]>([]);
   const [facilitiesLoading, setFacilitiesLoading] = useState(false);
+  const lastFixRef = useRef<LatLng | null>(null);
 
   useEffect(() => { setHeroVisible(true); }, []);
 
@@ -88,6 +90,7 @@ export default function HomePage() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude, longitude } = pos.coords;
+        lastFixRef.current = { lat: latitude, lng: longitude };
         const sorted = ALL_SPOTS_WITH_COORDS
           .map(s => ({ ...s, distance: haversineM(latitude, longitude, s.lat, s.lng) }))
           .sort((a, b) => a.distance - b.distance);
@@ -333,10 +336,15 @@ export default function HomePage() {
                           </Paragraph>
                         </div>
                         <a
-                          href={`https://api.map.baidu.com/marker?location=${spot.lat},${spot.lng}&title=${encodeURIComponent(spot.name)}&output=html`}
-                          target="_blank" rel="noopener noreferrer"
-                          style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none', whiteSpace: 'nowrap' }}
-                          onClick={(e) => e.stopPropagation()}
+                          style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none', whiteSpace: 'nowrap', cursor: 'pointer' }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openBaiduNavigation(
+                              { lat: spot.lat, lng: spot.lng },
+                              spot.name,
+                              lastFixRef.current,
+                            );
+                          }}
                         >
                           🚗 去这里
                         </a>
@@ -365,8 +373,22 @@ export default function HomePage() {
                           <Text type="secondary" style={{ marginLeft: 8, fontSize: 12 }}>{distText}</Text>
                         </div>
                         <Tag style={{ borderRadius: 10, fontSize: 11 }}>{distText}</Tag>
-                        <a href={navUrl} target="_blank" rel="noopener noreferrer"
-                           style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                        <a
+                           style={{ fontSize: 12, color: '#c41d7f', textDecoration: 'none', whiteSpace: 'nowrap', cursor: 'pointer' }}
+                           onClick={(e) => {
+                             e.stopPropagation();
+                             if (f.lat && f.lng) {
+                               openBaiduNavigation(
+                                 { lat: f.lat, lng: f.lng },
+                                 f.name,
+                                 lastFixRef.current,
+                                 'bd09ll',
+                               );
+                             } else {
+                               window.open(navUrl, '_blank', 'noopener,noreferrer');
+                             }
+                           }}
+                        >
                           🚗 去这里
                         </a>
                       </div>

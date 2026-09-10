@@ -1,6 +1,5 @@
 <div align="center">
 
-<img src="frontend/src/assets/hero.png" alt="灵山胜境 AI 数字人导游" width="100%">
 
 # 🏯 灵山胜境 AI 数字人导游 · 灵小禅
 
